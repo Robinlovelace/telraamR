@@ -92,8 +92,12 @@ cameras_summary |> str()
 ### Traffic data
 
 The hourly report for a single site can be obtained using the
-`read_Telraam_traffic` function. The following code shows an example of
-the use:
+`read_Telraam_traffic` function. We will use the camera with id
+`9000003890` as an example. See a visualisation of open data from this
+camera online at the following address:
+<https://telraam.net/en/location/9000004904/2023-04-01/2023-04-30>
+
+The following code shows how to get data from this device:
 
 ``` r
 data = read_telraam_traffic(9000003890,
@@ -207,7 +211,7 @@ We can visualise the number of cars per day using the following code:
 data |> 
   group_by(date) |> 
   summarise(cars = sum(car)) |> 
-  ggplot(aes(x=date, y=cars)) + 
+  ggplot(aes(x = as.Date(date), y=cars)) + 
   geom_line() + 
   labs(x="Date", y="Number of cars")
 ```
