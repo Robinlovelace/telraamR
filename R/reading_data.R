@@ -151,7 +151,9 @@ read_telraam_traffic = function(id,
     mydata = cbind(mydata,mydata_speed)
   }
 
-  mydata$date = ymd_hms(mydata$date)
+  mydata$datetime = ymd_hms(mydata$date)
+  # Return just the date without hours, minutes, seconds:
+  mydata$date = as.Date(mydata$datetime)
 
   return(mydata)
 }
