@@ -114,17 +114,17 @@ and direction
 dim(data)
 ```
 
-    ## [1] 720  19
+    ## [1] 720  20
 
 ``` r
 data |>
   str()
 ```
 
-    ## 'data.frame':    720 obs. of  19 variables:
+    ## 'data.frame':    720 obs. of  20 variables:
     ##  $ instance_id   : num  -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 ...
     ##  $ segment_id    : num  9e+09 9e+09 9e+09 9e+09 9e+09 ...
-    ##  $ date          : POSIXct, format: "2023-03-25 07:00:00" "2023-03-25 08:00:00" ...
+    ##  $ date          : Date, format: "2023-03-25" "2023-03-25" ...
     ##  $ interval      : chr  "hourly" "hourly" "hourly" "hourly" ...
     ##  $ uptime        : num  0.762 0.764 0.738 0.655 0.685 ...
     ##  $ heavy         : num  48.3 41.7 80.2 61.6 75.9 ...
@@ -141,6 +141,7 @@ data |>
     ##  $ pedestrian_rgt: num  0 2.55 5.42 1.33 18.73 ...
     ##  $ direction     : num  1 1 1 1 1 1 1 1 1 1 ...
     ##  $ timezone      : chr  "Europe/Brussels" "Europe/Brussels" "Europe/Brussels" "Europe/Brussels" ...
+    ##  $ datetime      : POSIXct, format: "2023-03-25 07:00:00" "2023-03-25 08:00:00" ...
 
 If the `include_speed` is set as `TRUE`. The returned data frame will
 include the binned speed distribution for cars
@@ -169,7 +170,7 @@ data = read_telraam_traffic(9000003890,
 dim(data)
 ```
 
-    ## [1] 720  44
+    ## [1] 720  45
 
 ``` r
 data |>
@@ -178,7 +179,7 @@ data |>
 ```
 
     ## 'data.frame':    720 obs. of  26 variables:
-    ##  $ date                : POSIXct, format: "2023-03-25 07:00:00" "2023-03-25 08:00:00" ...
+    ##  $ date                : Date, format: "2023-03-25" "2023-03-25" ...
     ##  $ car speed  [0,5)    : num  0.926 0.555 2.129 2.478 0.702 ...
     ##  $ car speed  [5,10)   : num  0.451 1.109 0.318 2.102 0.535 ...
     ##  $ car speed  [10,15)  : num  3.787 2.878 1.662 2.287 0.981 ...
@@ -213,23 +214,21 @@ data |>
   summarise(cars = sum(car)) |> 
   ggplot(aes(x = as.Date(date), y=cars)) + 
   geom_line() + 
-  labs(x="Date", y="Number of cars")
+  labs(x="Date", y="Number of cars per day")
 ```
 
 ![](README_files/figure-gfm/cars_per_day-1.png)<!-- -->
 
-```` 
-
 ### Segments Location
 
-To obtain the location of the network links a.k.a. segments, the following function can be used:
+To obtain the location of the network links a.k.a. segments, the
+following function can be used:
 
-
-```r
+``` r
 segments = read_telraam_segments()
 
 segments |> str()
-````
+```
 
     ## Classes 'sf' and 'data.frame':   5750 obs. of  2 variables:
     ##  $ oidn    : num  9e+09 9e+09 9e+09 9e+09 9e+09 ...

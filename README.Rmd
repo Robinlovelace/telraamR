@@ -77,8 +77,8 @@ The following code shows how to get data from this device:
 
 ```{r}
 data = read_telraam_traffic(9000003890,
-                            time_start = "2023-03-25 07:00:00",
-                            time_end = "2023-04-25 07:00:00",
+                            time_start = "2023-04-01 07:00:00",
+                            time_end = "2023-04-30 07:00:00",
                             report = "per-hour",
                             include_speed = FALSE)
 ```
@@ -101,8 +101,8 @@ library(tidyverse)
 
 ```{r}
 data = read_telraam_traffic(9000003890,
-                            time_start = "2023-03-25 07:00:00",
-                            time_end = "2023-04-25 07:00:00",
+                            time_start = "2023-04-01 07:00:00",
+                            time_end = "2023-04-30 07:00:00",
                             report = "per-hour",
                             include_speed = TRUE)
 dim(data)
@@ -119,8 +119,7 @@ data |>
   summarise(cars = sum(car)) |> 
   ggplot(aes(x = as.Date(date), y=cars)) + 
   geom_line() + 
-  labs(x="Date", y="Number of cars")
-```
+  labs(x="Date", y="Number of cars per day")
 ```
 
 ### Segments Location

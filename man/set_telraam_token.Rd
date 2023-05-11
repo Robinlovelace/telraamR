@@ -2,9 +2,12 @@
 % Please edit documentation in R/auth.R
 \name{set_telraam_token}
 \alias{set_telraam_token}
+\alias{get_telraam_token}
 \title{Saves an Authentication Token for the telraam API}
 \usage{
 set_telraam_token(token)
+
+get_telraam_token()
 }
 \arguments{
 \item{token}{a \code{string} with the token}
@@ -19,5 +22,4 @@ Saves an Authentication Token for the telraam API
 
 mytoken = "ivRgw7ZAGFedfwIdASezecdnETZDsdETB4Bqv3pbs5X8JDNnt1pQtpxDmpR6as2k"
 set_telraam_token(mytoken)
-
 }
